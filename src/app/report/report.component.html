@@ -1,0 +1,12 @@
+
+    <td>{{ report_input.place.locationName }}</td>
+    <td>{{ report_input.name }}</td>
+    <td>{{ report_input.date | date :'mediumDate' }}: {{ report_input.time }}</td>
+    <td>
+        <button (click)="onDelete($event)">
+            DELETE
+        </button> 
+    </td>
+    <td>
+        <button (click)="onSeeMore($event)">SEE MORE</button>
+    </td>

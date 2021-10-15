@@ -1,0 +1,49 @@
+<button id="revealForm">Click To Add New Report</button>
+
+<form
+id = "covidForm"
+[formGroup]="form"
+(ngSubmit)="onSubmit(form.value)"
+>
+    <input type="text" name="person_name" placeholder="NAME" formControlName="name"> <br>
+    <input type="number" min="1" max="100" name="person_age" placeholder="AGE" formControlName="age"> <br>
+    
+    <input type="radio" id="male" formControlName="gender" value="male">
+    <label for="male">Male</label><br>
+    <input type="radio" id="female" formControlName="gender" value="female">
+    <label for="female">Female</label><br>
+    <input type="radio" id="other" formControlName="gender" value="other">
+    <label for="other">Other</label><br><br>
+
+    <label for="phone"><b>Enter a phone number:</b></label><br>
+    <input type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required formControlName="phoneNumber"><br><br>
+
+    <p><b>Please Select A Location From The Presets Below
+    <br>(Alternatively you may click the map to get coordinates and add new location)</b></p>
+    <mat-form-field appearance="fill">
+        <mat-label>Select a Location:</mat-label>
+        <mat-select (selectionChange)="fillPlaceForm($event)">
+          <mat-option *ngFor="let place of placeOptions" [value]="place">
+            {{place.locationName}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+
+    <input type="text" id="placeName" placeholder="LOCATION NAME" formControlName="place_name"> <br>
+    <input type="number" id="placeLatitude" min="-90" max="90" name="location_latitude" placeholder="Latitude" formControlName="place_latitude"> <br>
+    <input type="number" id="placeLongitude" min="-180" max="180" name="location_longitude" placeholder="Longitude" formControlName="place_longitude"> <br>
+
+    <label for="time">Choose a time:</label> <br>
+    <input type="time" id="appt" name="time" formControlName="time" required> <br>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Choose a Date:</mat-label>
+        <input matInput [max]="maxDate" [matDatepicker]="picker" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    
+    <button>ADD</button>
+</form>
